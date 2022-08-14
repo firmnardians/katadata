@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Kata Data</title>
+		<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+		<link rel="stylesheet" href="./assets/css/index.css" />
+		<link rel="stylesheet" href="./assets/css/custom.css" />
+	</head>
+
+	<body style="display: none" id="body">
+		<section x-data="form" class="center">
+			<div class="mb-2">
+				<div class="d-flex align-items-center">
+					<a target="_blank" class="me-2" href="https://saiki.link/me">firmnardians</a>
+					/
+					<a target="_blank" class="ms-2" href="https://github.com/firmnardians/katadata">Github</a>
+				</div>
+				<h2 class="fw-bold mb-0">KATA DATA</h2>
+				<p class="text-muted mb-0">Periksa sebuah kata sesuai KBBI.</p>
+			</div>
+
+			<div class="mb-4">
+				<div class="mb-2">
+					<div class="input-group">
+						<input x-bind:disabled="isLoading" placeholder="Mau periksa kata apa?" class="form-control" x-model="value" type="text" />
+					</div>
+
+					<div x-show="value.length < 3">
+						<small class="text-danger">Ketiklah sebuah kata minimal 3 huruf.</small>
+					</div>
+				</div>
+
+				<button
+					x-bind:disabled="isLoading || value.length < 3"
+					@click="checkValidate"
+					x-text="isLoading ? 'Loading...' : 'Periksa'"
+					class="btn btn-primary w-100"
+				>
+					Periksa
+				</button>
+			</div>
+
+			<div x-show="isRecomendation" x-transition.duration.500ms>
+				<h5 class="mb-0">Rekomendasi:</h5>
+
+				<div class="mt-2">
+					<ol class="ps-4" id="result"></ol>
+				</div>
+			</div>
+
+			<div x-show="isCorrect" x-transition.duration.500ms>
+				<h6 class="text-success">Benar, Tidak ada kesalahan.</h6>
+			</div>
+
+			<div x-show="isNotFound" x-transition.duration.500ms>
+				<h6 class="text-danger">Upps, Tidak bisa memeriksa kata tersebut.</h6>
+				<ol class="ps-4">
+					<li>Pastikan tidak ada spasi.</li>
+					<li>Pastikan bukan sebuah kalimat.</li>
+					<li>Pastikan bukan nomor atau simbol.</li>
+				</ol>
+			</div>
+		</section>
+	</body>
+
+	<script src="./assets/js/lib/typo/typo.js"></script>
+	<script src="./assets/js/main.js"></script>
+</html>
