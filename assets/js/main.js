@@ -10,7 +10,7 @@ function checkTypo(value) {
 document.addEventListener('alpine:init', () => {
 	Alpine.data('form', () => ({
 		isLoading: false,
-		value: 'Manyapu',
+		value: 'Tidor',
 		isCorrect: false,
 		isNotFound: false,
 		isRecomendation: false,
@@ -29,7 +29,7 @@ document.addEventListener('alpine:init', () => {
 				if (!typo.is_correctly) {
 					if (typo.array_suggestions.length > 0) {
 						const render = typo.array_suggestions.map((item) => {
-							return `<li class="mb-2">${item} <br/> <a target="_blank" href=https://id.wiktionary.org/wiki/${item}>Lihat Penjelasan</a></li>`;
+							return `<li class="mb-2">${item} <br/> <a target="_blank" href=https://id.wiktionary.org/wiki/${item}>Pelajari lebih lanjut <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0d6efd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 17l5-5-5-5M6 17l5-5-5-5"/></svg></a></li>`;
 						});
 
 						getResult.innerHTML = render.join('\n');
